@@ -7,6 +7,7 @@ Init for plugin just sets up basic object and data for notifications.
 To start everything up, init should be like this:
 
 var options = {};
+
 var notifications = $('body').jQNotifications(options);
 
 
@@ -20,9 +21,13 @@ prefix -> (string) -> (default : 'jqn_') -- prefix for CSS classes
 createWrappers -> (bool) -> (default : true) -- weather or not to create separate wrapper only for notifications - if you have your wrapper for notifications and start init on it, set it to false
 
 dismissIcon -> (string) -> (default : SVG ICON CODE) -> you can insert any type of string you want (img, svg...)
+
 dismissButton -> (string) -> (default : 'button') -> HTML tag name for element you want to be trigger
+
 autoclose -> (bool) -> (default : true) -> weather or not to have notifications auto dismissable
+
 type -> (int) -> (default : 0) -> index of array item ( ['success', 'error', 'warning', 'info'] )
+
 title -> (string) -> (default : '') -> title for your notification
 
 text -> (string) -> (default : '') -> text for your notification
