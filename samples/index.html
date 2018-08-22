@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+
+		<title>Sample</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+
+		<style>
+			* { 
+				box-sizing: border-box;
+			}
+			main {
+				max-width: 1200px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.jqn_main-wrapper {
+				position: fixed;
+				bottom: 25px;
+				right: 25px;
+				z-index: 99999;
+			}
+
+			.jqn_single-notification {
+
+			}
+
+			.jqn_dismiss-trigger svg {
+				width: 20px;
+			}
+
+		</style>
+
+	</head>
+
+
+	<body>
+
+		<main>
+			<button type="button" class="error notify">Error</button>
+			<button type="button" class="warning notify">Warning</button>
+			<button type="button" class="info notify">Info</button>
+			<button type="button" class="success notify">Success</button>
+
+			<button type="button" class="something notify">Customizable</button>
+
+
+			<button type="button" class="dismiss">Dismiss Notification</button>
+		</main>
+
+		<!-- jQuery -->
+		<script type="text/javascript" src="jquery.min.js"></script>
+
+		<!-- CSV Export -->
+		<script type="text/javascript" src="jQNotifications.js"></script>
+		<script type="text/javascript">
+			(function($){
+				// init plugin with default values and global params on wrapper that you want notifications to be populated
+					var notifications = $('main').jQNotifications();
+					console.log(notifications);
+
+
+				// specific notification with params
+					$('button.notify').click(function(){
+						var type = 0, text = '', autoclose = true;
+						if($(this).hasClass('success')){
+							notifications.showSuccess('Yey', 'Some Success Message');
+						}
+						else if($(this).hasClass('error')){
+							notifications.showError('Ooops', 'Some Error Message');
+						}
+						else if($(this).hasClass('warning')){
+							notifications.showWarning('Woah!', 'Some Warning Message');
+						}
+						else if($(this).hasClass('info')){
+							notifications.showInfo('Ehm, kehm...', 'Some Info Message');
+						} else {
+							var notify = notifications.showNotification({ type: type, autoclose: false });
+							console.log(notify); // buildable version returns init object for single notification in difference to quick ones
+						}
+
+					});
+
+
+				// dismiss notification externally
+					$('button.dismiss').click(function(){
+						var notif = $('.jqn_main-wrapper .jqn_single-notification:first');
+						notifications.dismissNotification( notif );
+					});
+
+
+			})(jQuery);
+		</script>
+	</body>
+</html>
